@@ -13,13 +13,26 @@ var my_news = [
     }
 ];
 
+var Article = React.createClass({
+    render: function() {
+        const data = this.props.data;
+
+        return (
+            <div className="news__article">
+                <b className="news__author">{data.author}</b> <br/>
+                {data.text}
+            </div>
+        )
+    }
+});
+
 var News = React.createClass({
     render: function() {
-        const news_html = this.props.data.map(function(item, index) {
+        const data = this.props.data;
+        const news_html = data.map(function(item, index) {
             return (
                 <div key={index}>
-                    <b className="news__author">{item.author}</b>
-                    {item.text}
+                    <Article data={item} />
                 </div>
             )
         })
@@ -27,7 +40,10 @@ var News = React.createClass({
         return (
             <div className="news">
                 {news_html}
+
+                {data.length > 0 ? 'Total news: ' + data.length : ''}
             </div>
+
         )
     }
 })
