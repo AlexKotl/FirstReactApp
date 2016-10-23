@@ -1,0 +1,21 @@
+{
+  "name": "react_first",
+  "description": "First App on React",
+  "main": "index.html",
+  "authors": [
+    "Alex Kotlyarov"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "react": "^15.3.2",
+    "babel": "^5.8.38"
+  }
+}
