@@ -1,0 +1,19 @@
+body {
+    font: normal 12px Arial;
+    background-color: #e5ffc1;
+}
+
+.news {
+
+}
+
+.news__article {
+    border:1px solid #c9d6af;
+    background-color: white;
+    padding: 10px 30px;
+    margin: 10px;
+}
+
+.news__author {
+    color: #0a2238
+}
