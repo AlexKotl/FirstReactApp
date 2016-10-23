@@ -3,6 +3,10 @@ body {
     background-color: #e5ffc1;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .news {
 
 }
