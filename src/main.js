@@ -13,6 +13,8 @@ var my_news = [
     }
 ];
 
+window.ee = new EventEmitter();
+
 var Article = React.createClass({
     propTypes: {
         data: React.PropTypes.shape({
@@ -83,13 +85,16 @@ const InputNews = React.createClass({
     },
 
     addHandler: function() {
-        console.log(this.refs.textInput)
-        alert(ReactDOM.findDOMNode(this.refs.textInput).value);
+        const text = ReactDOM.findDOMNode(this.refs.textInput).value;
+        window.ee.emit('News.add', {
+            text: text,
+            author: 'anonymous'
+        });
     },
 
     checkboxChange: function() {
         this.setState({agreed: !this.state.agreed});
-        //ReactDOM.findDOMNode(this.refs.addButton).disabled = this.state.agreed;
+
     },
 
     render: function() {
@@ -105,10 +110,29 @@ const InputNews = React.createClass({
 });
 
 var App = React.createClass({
+    getInitialState: function() {
+        return {
+            news: my_news
+        }
+    },
+
+    componentDidMount: function() {
+        window.ee.addListener('News.add', text => {
+            const news = this.state.news.concat(text);
+            this.setState({
+                news: news
+            })
+        });
+    },
+
+    componentWillUnmount: function() {
+        window.ee.removeListener('News.add');
+    },
+
     render: function() {
         return (
             <div className="app">
-                <News data={my_news} /> {/* some comment */}
+                <News data={this.state.news} /> {/* some comment */}
             </div>
         )
     }
