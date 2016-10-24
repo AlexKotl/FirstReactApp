@@ -71,28 +71,17 @@ var News = React.createClass({
 });
 
 const InputNews = React.createClass({
-    getInitialState: function() {
-        return {
-            textValue: ""
-        }
-    },
-
-    changeHandler: function(event) {
-        this.setState({
-            textValue: event.target.value
-        });
-        console.log('state updated');
-    },
 
     addHandler: function() {
-        alert(this.state.textValue);
+        console.log(this.refs.textInput)
+        alert(ReactDOM.findDOMNode(this.refs.textInput).value);
     },
 
     render: function() {
         return (
             <div>
-                <input type="text" placeholder="Add new article" onChange={this.changeHandler} />
-                <button onClick={this.addHandler}>Add</button>
+                <input type="text" placeholder="Add new article" ref="textInput" />
+                <button onClick={this.addHandler} >Add</button>
             </div>
         )
     }
