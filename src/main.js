@@ -62,11 +62,41 @@ var News = React.createClass({
                 {news_html}
 
                 {data.length > 0 ? 'Total news: ' + data.length : ''}
+
+                <InputNews />
             </div>
 
         )
     }
-})
+});
+
+const InputNews = React.createClass({
+    getInitialState: function() {
+        return {
+            textValue: ""
+        }
+    },
+
+    changeHandler: function(event) {
+        this.setState({
+            textValue: event.target.value
+        });
+        console.log('state updated');
+    },
+
+    addHandler: function() {
+        alert(this.state.textValue);
+    },
+
+    render: function() {
+        return (
+            <div>
+                <input type="text" placeholder="Add new article" onChange={this.changeHandler} />
+                <button onClick={this.addHandler}>Add</button>
+            </div>
+        )
+    }
+});
 
 var App = React.createClass({
     render: function() {
