@@ -72,6 +72,10 @@ var News = React.createClass({
 
 const InputNews = React.createClass({
 
+    componentDidMount: function() {
+        ReactDOM.findDOMNode(this.refs.textInput).focus();
+    },
+
     addHandler: function() {
         console.log(this.refs.textInput)
         alert(ReactDOM.findDOMNode(this.refs.textInput).value);
