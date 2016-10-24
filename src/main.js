@@ -72,6 +72,12 @@ var News = React.createClass({
 
 const InputNews = React.createClass({
 
+    getInitialState: function() {
+        return {
+            agreed: false
+        }
+    },
+
     componentDidMount: function() {
         ReactDOM.findDOMNode(this.refs.textInput).focus();
     },
@@ -81,11 +87,18 @@ const InputNews = React.createClass({
         alert(ReactDOM.findDOMNode(this.refs.textInput).value);
     },
 
+    checkboxChange: function() {
+        this.setState({agreed: !this.state.agreed});
+        //ReactDOM.findDOMNode(this.refs.addButton).disabled = this.state.agreed;
+    },
+
     render: function() {
         return (
             <div>
+                <p/>
                 <input type="text" placeholder="Add new article" ref="textInput" />
-                <button onClick={this.addHandler} >Add</button>
+                <button onClick={this.addHandler} disabled={!this.state.agreed} ref="addButton">Add</button> <br/>
+                <label><input type="checkbox" onChange={this.checkboxChange} ref="acceptCheckbox"/> Accept terms</label>
             </div>
         )
     }
